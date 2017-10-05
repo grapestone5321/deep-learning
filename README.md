@@ -16,6 +16,39 @@ Below is a plot showing the number of bike riders over the first 10 days or so i
 
 Here we have some categorical variables like season, weather, month. To include these in our model, we'll need to make binary dummy variables. This is simple to do with Pandas thanks to get_dummies().
 
+### Scaling target variables
+
+To make training the network easier, we'll standardize each of the continuous variables. That is, we'll shift and scale the variables such that they have zero mean and a standard deviation of 1.
+
+The scaling factors are saved so we can go backwards when we use the network for predictions.
+
+### Splitting the data into training, testing, and validation sets
+
+We'll save the data for the last approximately 21 days to use as a test set after we've trained the network. We'll use this set to make predictions and compare them with the actual number of riders.
+
+## Time to build the network
+
+Below you'll build your network. We've built out the structure and the backwards pass. You'll implement the forward pass through the network. You'll also set the hyperparameters: the learning rate, the number of hidden units, and the number of training passes.
+
+<img src="assets/neural_network.png" width=300px>
+
+The network has two layers, a hidden layer and an output layer. The hidden layer will use the sigmoid function for activations. The output layer has only one node and is used for the regression, the output of the node is the same as the input of the node. That is, the activation function is . A function that takes the input signal and generates an output signal, but takes into account the threshold, is called an activation function. We work through each layer of our network calculating the outputs for each neuron. All of the outputs from one layer become inputs to the neurons on the next layer. This process is called forward propagation.
+
+We use the weights to propagate signals forward from the input to the output layers in a neural network. We use the weights to also propagate error backwards from the output back into the network to update our weights. This is called backpropagation.
+
+Hint: You'll need the derivative of the output activation function () for the backpropagation implementation. If you aren't familiar with calculus, this function is equivalent to the equation . What is the slope of that equation? That is the derivative of .
+
+Below, you have these tasks:
+
+- Implement the sigmoid function to use as the activation function. Set self.activation_function in __init__ to your sigmoid function.
+- Implement the forward pass in the train method.
+- Implement the backpropagation algorithm in the train method, including calculating the output error.
+- Implement the forward pass in the run method.
+
+
+
+
+
 
      ==========================================
      Bike Sharing Dataset
