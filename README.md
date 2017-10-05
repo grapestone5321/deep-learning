@@ -1,5 +1,22 @@
 # Your first neural network
 
+In this project, you'll build your first neural network and use it to predict daily bike rental ridership. We've provided some of the code, but left the implementation of the neural network up to you (for the most part). After you've submitted this project, feel free to explore the data and the model more.
+
+## Load and prepare the data
+
+A critical step in working with neural networks is preparing the data correctly. Variables on different scales make it difficult for the network to efficiently learn the correct weights. Below, we've written the code to load and prepare the data. You'll learn more about this soon!
+
+## Checking out the data
+
+This dataset has the number of riders for each hour of each day from January 1 2011 to December 31 2012. The number of riders is split between casual and registered, summed up in the cnt column. You can see the first few rows of the data above.
+
+Below is a plot showing the number of bike riders over the first 10 days or so in the data set. (Some days don't have exactly 24 entries in the data set, so it's not exactly 10 days.) You can see the hourly rentals here. This data is pretty complicated! The weekends have lower over all ridership and there are spikes when people are biking to and from work during the week. Looking at the data above, we also have information about temperature, humidity, and windspeed, all of these likely affecting the number of riders. You'll be trying to capture all this with your model.
+
+### Dummy variables
+
+Here we have some categorical variables like season, weather, month. To include these in our model, we'll need to make binary dummy variables. This is simple to do with Pandas thanks to get_dummies().
+
+
      ==========================================
      Bike Sharing Dataset
      ==========================================
@@ -10,6 +27,18 @@ Laboratory of Artificial Intelligence and Decision Support (LIAAD), University o
 INESC Porto, Campus da FEUP
 Rua Dr. Roberto Frias, 378
 4200 - 465 Porto, Portugal
+
+### Scaling target variables
+
+To make training the network easier, we'll standardize each of the continuous variables. That is, we'll shift and scale the variables such that they have zero mean and a standard deviation of 1.
+
+The scaling factors are saved so we can go backwards when we use the network for predictions.
+
+### Splitting the data into training, testing, and validation sets
+
+We'll save the data for the last approximately 21 days to use as a test set after we've trained the network. We'll use this set to make predictions and compare them with the actual number of riders.
+
+We'll split the data into two sets, one for training and one for validating as the network is being trained. Since this is time series data, we'll train on historical data, then try to predict on future data (the validation set).
 
 
      =========================================
